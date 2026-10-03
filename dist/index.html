@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MPCI-Bench · Multimodal Contextual Integrity</title>
+<meta name="description" content="MPCI-Bench evaluates how multimodal language-model agents balance privacy and utility: 1,026 matched pairs, three evaluation tiers, and ten contextual domains.">
+<meta name="theme-color" content="#153d65">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="style.css">
+<script src="app.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#overview">Skip to content</a>
+<header><nav class="nav wrap" aria-label="Main navigation"><a class="brand" href="#">MPCI<span>–</span>Bench</a><div><a href="#overview">Overview</a><a href="#benchmark">Benchmark</a><a href="#results">Results</a><a href="#citation">Citation</a></div></nav></header>
+<main>
+<section class="hero wrap">
+<p class="venue">Accepted at NeurIPS 2026 · ED Track</p>
+<h1>MPCI<span>–</span>Bench</h1>
+<p class="paper-title">A Benchmark for Multimodal Pairwise Contextual Integrity Evaluation of Language Model Agents</p>
+<p class="authors">Shouju Wang <span>·</span> Haopeng Zhang</p>
+<p class="affiliation">University of Hawaiʻi at Mānoa</p>
+<div class="resources"><a class="button primary" href="https://arxiv.org/abs/2601.08235">Read the paper</a><a class="button" href="https://github.com/hpzhang94/MPCI-Bench"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 .8a11.3 11.3 0 0 0-3.57 22c.56.1.77-.24.77-.54v-2.1c-3.15.68-3.82-1.33-3.82-1.33-.51-1.3-1.26-1.65-1.26-1.65-1.03-.7.08-.69.08-.69 1.14.08 1.73 1.17 1.73 1.17 1.01 1.73 2.65 1.23 3.3.94.1-.73.39-1.23.72-1.51-2.52-.29-5.17-1.26-5.17-5.6 0-1.24.45-2.25 1.17-3.04-.12-.28-.51-1.44.11-3 0 0 .96-.3 3.11 1.16a10.8 10.8 0 0 1 5.66 0c2.15-1.46 3.1-1.16 3.1-1.16.63 1.56.24 2.72.12 3 .73.79 1.17 1.8 1.17 3.04 0 4.35-2.65 5.31-5.18 5.59.41.36.77 1.05.77 2.12v3.06c0 .3.2.65.78.54A11.3 11.3 0 0 0 12 .8Z"/></svg>GitHub</a><a class="button" href="https://huggingface.co/datasets/Soojuu/mpci-bench"><span aria-hidden="true">🤗</span> Hugging Face</a></div>
+<p class="hero-statement">The same image. A different context.<br><strong>Should an agent share it?</strong></p>
+<div class="stats"><div><strong>2,052</strong><span>benchmark cases</span></div><div><strong>1,026</strong><span>matched pairs</span></div><div><strong>3</strong><span>evaluation tiers</span></div><div><strong>10</strong><span>contextual domains</span></div></div>
+</section>
+<section class="section wrap" id="overview"><div class="section-label">01 / THE QUESTION</div><h2>Privacy depends on context.</h2><div class="intro-columns"><p>Personal agents can read images, draft messages, and act on our behalf. Recognizing sensitive information is only part of the challenge: they must also decide <strong>when sharing it is appropriate.</strong></p><p>MPCI-Bench tests both sides of that decision. Each pair uses the same source image in two contrasting social contexts, assessing whether an agent can protect privacy while still completing legitimate tasks.</p></div>
+<figure class="paper-figure"><a href="assets/case-example.png" target="_blank" rel="noopener" aria-label="Open the benchmark example figure at full resolution"><img src="assets/case-example.png" width="2033" height="708" alt="Paper Figure 1: a paired positive and negative image-sharing case represented as a CI seed, narrative story, and agent action trace."></a><figcaption><span>Figure 1.</span> One visual source, two information flows, three levels of context. Original figure from the paper; select to view at full resolution.</figcaption></figure>
+</section>
+<section class="tinted" id="benchmark"><div class="section wrap"><div class="section-label">02 / THE BENCHMARK</div><h2>From knowing the norm<br>to taking the right action.</h2><p class="section-intro">Three tiers connect abstract privacy judgments to the decisions an agent makes with tools.</p>
+<div class="tier-tabs" role="tablist" aria-label="Evaluation tiers"><button role="tab" id="tab-seed" aria-controls="tier-panel" aria-selected="true" data-tier="seed">01 <span>Seed</span></button><button role="tab" id="tab-story" aria-controls="tier-panel" aria-selected="false" tabindex="-1" data-tier="story">02 <span>Story</span></button><button role="tab" id="tab-trace" aria-controls="tier-panel" aria-selected="false" tabindex="-1" data-tier="trace">03 <span>Trace</span></button></div>
+<div class="tier-panel" id="tier-panel" role="tabpanel" aria-labelledby="tab-seed" tabindex="0"><div><p class="eyebrow" id="tier-kicker">NORMATIVE JUDGMENT</p><h3 id="tier-title">Who can share what with whom?</h3><p id="tier-description">Structured contextual-integrity parameters describe the data subject, sender, recipient, data type, and transmission principle. Paired seeds contrast an appropriate flow with an inappropriate one.</p></div><div class="tier-detail"><span id="tier-type">INPUT</span><p id="tier-input">Source image + structured CI parameters</p><span>WHAT IT TESTS</span><p id="tier-test">Recognition of contextual privacy norms</p></div></div>
+<h3 class="subheading">Built with quality at each stage</h3><p class="section-intro">Tri-Principle Iterative Refinement checks semantic utility, contextual appropriateness, and story realism. Both sides of a pair must pass the quality filter before trace simulation.</p>
+<figure class="paper-figure"><a href="assets/method-flow.png" target="_blank" rel="noopener" aria-label="Open the construction pipeline figure at full resolution"><img loading="lazy" src="assets/method-flow.png" width="2030" height="1037" alt="Paper Figure 2: image preprocessing and paired seed construction, story expansion and iterative refinement, then executable agent trace simulation."></a><figcaption><span>Figure 2.</span> The MPCI-Bench construction pipeline.</figcaption></figure>
+</div></section>
+<section class="section wrap" id="results"><div class="section-label">03 / KEY FINDINGS</div><h2>Knowing privacy norms<br>doesn’t guarantee private actions.</h2><p class="section-intro">In the paper’s action evaluation, visual information is leaked more often than text. Strong probing performance does not reliably translate into safe tool use.</p>
+<div class="chart-card"><div class="chart-header"><div><h3>The modality leakage gap</h3><p>Leakage rate on inappropriate flows · lower is better</p></div><label for="model-family">Model family<select id="model-family"><option value="all">All models</option><option value="GPT">GPT</option><option value="Mistral">Mistral</option><option value="Gemma">Gemma</option><option value="InternVL">InternVL</option><option value="Qwen">Qwen</option></select></label></div><div class="legend"><span><i class="text-key"></i>Text leakage</span><span><i class="visual-key"></i>Visual leakage</span></div><div id="chart" aria-live="polite"></div><p class="source-note">Source: <a href="https://arxiv.org/html/2601.08235v3#S4.T4">Table 4, arXiv v3 (January 2026)</a>. Values reproduce the table; the accompanying paper prose contains some differing numbers.</p></div>
+<div class="findings"><article><span class="finding-number">01</span><h3>A gap between judgment and action</h3><p>Models can identify inappropriate flows in a direct question yet still disclose sensitive information when completing the corresponding agent task.</p></article><article><span class="finding-number">02</span><h3>Images are a blind spot</h3><p>Visual leakage exceeds textual leakage across every evaluated model. Direct image attachment is a major source of disclosure.</p></article><article><span class="finding-number">03</span><h3>Refusal alone isn’t enough</h3><p>Privacy safeguards must preserve useful sharing in appropriate contexts. The paired design exposes the cost of overly conservative behavior.</p></article></div>
+<div class="mitigation"><div><p class="eyebrow">PRIVACY + UTILITY</p><h3>Context-aware filtering shows promise.</h3><p>For Mistral-Large-3, the CI Filter reduces visual leakage while retaining high utility on appropriate flows.</p><p class="source-note">Prompt-based intervention; Table 5, arXiv v3. Results are specific to the evaluated model and setup.</p></div><div class="mitigation-numbers"><div><span>Visual leakage</span><p><s>82.1%</s> <strong>29.6%</strong></p></div><div><span>Positive-case utility</span><p><s>97.3%</s> <strong>92.0%</strong></p></div></div></div>
+<details class="limits"><summary>Evaluation scope and limitations</summary><p>The benchmark uses synthetic stories and simulated agent traces grounded in VISPR images. Contextual norms may vary across cultures and domains. Automated action evaluation uses an LLM judge; the human study validates story quality, not every action outcome. These findings describe the models and setup in the January 2026 arXiv version.</p></details>
+</section>
+<section class="tinted"><div class="section wrap resources-section"><div><div class="section-label">04 / RESOURCES</div><h2>Explore MPCI-Bench.</h2><p>Access the benchmark annotations and evaluation code.</p></div><div class="resource-links"><a href="https://huggingface.co/datasets/Soojuu/mpci-bench"><span>🤗 &nbsp; Hugging Face</span><small>Dataset and viewer</small></a><a href="https://github.com/hpzhang94/MPCI-Bench"><span>GitHub repository</span><small>Code and evaluation tools</small></a></div><p class="dataset-note">Source images are obtained separately from <a href="https://tribhuvanesh.github.io/vpa/">VISPR</a>; the dataset release provides image identifiers and annotations.</p></div></section>
+<section class="section wrap citation" id="citation"><div class="section-label">05 / CITATION</div><div class="citation-heading"><h2>Cite this work.</h2><button id="copy-citation" class="button" type="button">Copy BibTeX</button></div><pre><code id="bibtex">@misc{wang2026mpcibench,
+  title={MPCI-Bench: A Benchmark for Multimodal Pairwise
+         Contextual Integrity Evaluation of Language Model Agents},
+  author={Shouju Wang and Haopeng Zhang},
+  year={2026},
+  eprint={2601.08235},
+  archivePrefix={arXiv},
+  primaryClass={cs.AI},
+  url={https://arxiv.org/abs/2601.08235}
+}</code></pre><p id="copy-status" role="status"></p></section>
+</main><footer class="wrap"><a class="brand" href="#">MPCI<span>–</span>Bench</a><p>Shouju Wang &amp; Haopeng Zhang · 2026</p><p>Layout inspired by <a href="https://privasis.github.io/">Privasis</a>.</p></footer>
+</body></html>
