@@ -167,3 +167,35 @@ pre code { font-size: 0.875rem; color: #333; }
   .example-tabs button { font-size: 0.875rem; padding: 0.65rem 0.8rem; }
   .example-record { padding: 1rem; }
 }
+
+/* Lead with the construction figure and keep source records optional. */
+.construction-tiers { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 1.25rem; margin: 1.5rem 0 1rem; }
+.construction-tiers b { display: block; margin-bottom: 0.35rem; }
+.construction-tiers span { display: block; font-size: 0.95rem; }
+.construction-note { font-size: 0.95rem; color: #555; }
+.visual-example { display: grid; grid-template-columns: minmax(0,1.05fr) minmax(0,1fr); align-items: start; gap: 2rem; }
+.source-image { margin: 0; }
+.source-image a { display: block; }
+.source-image img { display: block; width: 100%; height: auto; max-height: 330px; object-fit: contain; background: #f8f8f8; }
+.source-image figcaption { margin-top: 0.65rem; font-size: 0.8rem; color: #666; line-height: 1.5; }
+.source-image figcaption a { display: inline; }
+.example-comparison .title { margin-bottom: 1.1rem; }
+.sharing-context { border-left: 3px solid #527e65; padding: 0.6rem 1rem; margin-bottom: 1rem; background: #fafcfb; }
+.sharing-context.inappropriate { border-color: #b46b43; background: #fdfaf8; }
+.sharing-context h4 { font-size: 0.9rem; font-weight: 700; color: #3c684e; margin-bottom: 0.4rem; }
+.sharing-context.inappropriate h4 { color: #985431; }
+.sharing-context p { font-size: 1rem; line-height: 1.55; }
+.context-note { color: #666; font-size: 0.8rem; line-height: 1.5; }
+#record-details .example-toolbar { margin-top: 1rem; }
+.paper-details > .note { margin-block: 1rem; }
+@media screen and (max-width: 768px) {
+  .visual-example { grid-template-columns: minmax(0,1fr); gap: 1.5rem; }
+  .source-image img { max-height: 300px; }
+  .construction-tiers { gap: 0.75rem; }
+  .construction-tiers span { font-size: 0.875rem; }
+}
+@media screen and (max-width: 380px) {
+  .construction-tiers { grid-template-columns: minmax(0,1fr); gap: 0.8rem; }
+  .construction-tiers b { display: inline; margin-right: 0.5rem; }
+  .construction-tiers span { display: inline; }
+}

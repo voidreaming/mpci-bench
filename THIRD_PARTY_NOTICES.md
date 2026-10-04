@@ -24,10 +24,20 @@ Paper and figures: Shouju Wang and Haopeng Zhang, MPCI-Bench, arXiv:2601.08235v3
 
 ## Benchmark example excerpts
 
-Six records (three pairs: `2017_89386002`, `2017_50310123`, `2017_99670226`) are reproduced from MPCI-Bench by Shouju Wang and Haopeng Zhang. Source: https://github.com/hpzhang94/MPCI-Bench/blob/bd85c6ec5c7aef81570da73081bdcbbe3af97893/dataset/mpci_bench.json.
+Six records (three pairs: `2017_12369681`, `2017_24887648`, `2017_99670226`) are reproduced from MPCI-Bench by Shouju Wang and Haopeng Zhang. Source: https://github.com/hpzhang94/MPCI-Bench/blob/bd85c6ec5c7aef81570da73081bdcbbe3af97893/dataset/mpci_bench.json.
 
-The repository identifies the dataset license as CC BY 4.0: https://creativecommons.org/licenses/by/4.0/. The selected fields are preserved verbatim; only formatting, category labels, titles, and explanatory summaries are adapted for display. The excerpt contains synthetic stories and tool histories, not redistributed VISPR source images. Field-level provenance is included in `dist/static/data/examples.json`.
+The repository identifies the dataset license as CC BY 4.0: https://creativecommons.org/licenses/by/4.0/. The selected fields are preserved verbatim; only formatting, category labels, titles, and explanatory summaries are adapted for display. The records contain synthetic stories and tool histories. The three source photographs are included separately under their original licenses, as credited below; synthetic scenarios are not claims about the photographed people or events. Field-level provenance is included in `dist/static/data/examples.json`.
 
 ## Redrawn result figures
 
 The scientific plots in `dist/assets/results/` are generated from Tables 4 and 5 of the author's paper. Exact plotted values and source links are included in `scripts/figure-data.json`; `scripts/render_figures.py` reproduces desktop and mobile versions.
+
+## Example photographs
+
+The images in `dist/assets/examples/` are unmodified original Flickr photographs referenced by VISPR training annotations. Each is licensed [CC BY 2.0](https://creativecommons.org/licenses/by/2.0/). Original dimensions, download URLs, VISPR IDs and file hashes are in `dist/assets/examples/attributions.json`.
+
+- `2017_12369681.jpg`: “Meade High Graduation” — [U.S. Army Garrison Fort George G. Meade](https://www.flickr.com/photos/ftmeade/14403503191/).
+- `2017_24887648.jpg`: “MEDRETE 15-1 takes place in Burundi” — [Sgt. 1st Class Matthew Chlosta / U.S. Army Africa](https://www.flickr.com/photos/usarmyafrica/16263599497/).
+- `2017_99670226.jpg`: “tickets!” — [Chris Connelly](https://www.flickr.com/photos/c_conn/2778118990/).
+
+VISPR: Tribhuvanesh Orekondy, Bernt Schiele, and Mario Fritz. *Towards a Visual Privacy Advisor: Understanding and Predicting Privacy Risks in Images.* ICCV 2017. [Dataset and download instructions](https://tribhuvanesh.github.io/vpa/). The VISPR dataset is CC BY-NC 4.0; its documentation states that original licenses apply to the images.
