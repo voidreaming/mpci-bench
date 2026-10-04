@@ -1,0 +1,198 @@
+{
+  "source": {
+    "paper": "MPCI-Bench: A Benchmark for Multimodal Pairwise Contextual Integrity Evaluation of Language Model Agents",
+    "version": "arXiv:2601.08235v3",
+    "action_table": "https://arxiv.org/html/2601.08235v3#S4.T4",
+    "mitigation_table": "https://arxiv.org/html/2601.08235v3#S5.T5",
+    "unit": "Leakage, utility, and refusal are percentages. Helpfulness is the reported 1\u20135 score.",
+    "notes": [
+      "Values are transcribed from the tables, which differ from some surrounding prose.",
+      "In Table 4, GPT-4o textual leakage is 40.9 and GPT-5 aggregate leakage is 60.2.",
+      "Leakage is measured on negative cases, where sharing violates the norm. Visual utility is measured on positive cases, where image sharing is expected.",
+      "Table 5 abbreviates the models as Mistral and Qwen; Section 5.3 identifies Mistral-Large-3 and Qwen3-VL-8B."
+    ]
+  },
+  "action_results": [
+    {
+      "model": "GPT-5",
+      "aggregate_leakage": 60.2,
+      "text_leakage": 20.2,
+      "visual_leakage": 56.9,
+      "negative_helpfulness": 4.34,
+      "visual_utility": 92.0,
+      "positive_helpfulness": 4.6
+    },
+    {
+      "model": "GPT-4o",
+      "aggregate_leakage": 92.0,
+      "text_leakage": 40.9,
+      "visual_leakage": 90.4,
+      "negative_helpfulness": 4.33,
+      "visual_utility": 98.3,
+      "positive_helpfulness": 4.4
+    },
+    {
+      "model": "Mistral-Large-3",
+      "aggregate_leakage": 84.5,
+      "text_leakage": 38.7,
+      "visual_leakage": 82.1,
+      "negative_helpfulness": 4.4,
+      "visual_utility": 97.3,
+      "positive_helpfulness": 4.58
+    },
+    {
+      "model": "Gemma-3-4B",
+      "aggregate_leakage": 90.2,
+      "text_leakage": 36.4,
+      "visual_leakage": 87.4,
+      "negative_helpfulness": 3.45,
+      "visual_utility": 93.1,
+      "positive_helpfulness": 3.44
+    },
+    {
+      "model": "Gemma-3-12B",
+      "aggregate_leakage": 91.4,
+      "text_leakage": 36.2,
+      "visual_leakage": 88.8,
+      "negative_helpfulness": 4.17,
+      "visual_utility": 94.0,
+      "positive_helpfulness": 4.19
+    },
+    {
+      "model": "Gemma-3-27B",
+      "aggregate_leakage": 86.1,
+      "text_leakage": 37.2,
+      "visual_leakage": 82.1,
+      "negative_helpfulness": 4.03,
+      "visual_utility": 93.1,
+      "positive_helpfulness": 4.14
+    },
+    {
+      "model": "InternVL3.5-8B",
+      "aggregate_leakage": 87.4,
+      "text_leakage": 34.9,
+      "visual_leakage": 82.8,
+      "negative_helpfulness": 3.69,
+      "visual_utility": 91.3,
+      "positive_helpfulness": 3.57
+    },
+    {
+      "model": "InternVL3.5-14B",
+      "aggregate_leakage": 90.0,
+      "text_leakage": 43.6,
+      "visual_leakage": 83.3,
+      "negative_helpfulness": 3.85,
+      "visual_utility": 94.2,
+      "positive_helpfulness": 3.68
+    },
+    {
+      "model": "Qwen3-VL-4B",
+      "aggregate_leakage": 81.3,
+      "text_leakage": 30.9,
+      "visual_leakage": 79.0,
+      "negative_helpfulness": 3.75,
+      "visual_utility": 92.9,
+      "positive_helpfulness": 3.93
+    },
+    {
+      "model": "Qwen3-VL-8B",
+      "aggregate_leakage": 84.2,
+      "text_leakage": 39.6,
+      "visual_leakage": 80.0,
+      "negative_helpfulness": 3.87,
+      "visual_utility": 92.5,
+      "positive_helpfulness": 4.0
+    },
+    {
+      "model": "Qwen3-VL-30B-A3B",
+      "aggregate_leakage": 93.8,
+      "text_leakage": 45.2,
+      "visual_leakage": 91.6,
+      "negative_helpfulness": 4.22,
+      "visual_utility": 97.4,
+      "positive_helpfulness": 4.27
+    }
+  ],
+  "mitigation_results": [
+    {
+      "model": "Mistral-Large-3",
+      "method": "Default",
+      "visual_leakage": 82.1,
+      "negative_refusal": null,
+      "visual_utility": 97.3,
+      "positive_refusal": null
+    },
+    {
+      "model": "Mistral-Large-3",
+      "method": "CI Filter",
+      "visual_leakage": 29.6,
+      "negative_refusal": 14.8,
+      "visual_utility": 92.0,
+      "positive_refusal": 0.4
+    },
+    {
+      "model": "Mistral-Large-3",
+      "method": "Image Review",
+      "visual_leakage": 62.9,
+      "negative_refusal": 3.2,
+      "visual_utility": 90.4,
+      "positive_refusal": 1.2
+    },
+    {
+      "model": "Mistral-Large-3",
+      "method": "Explicit Refuse",
+      "visual_leakage": 63.5,
+      "negative_refusal": 21.4,
+      "visual_utility": 93.3,
+      "positive_refusal": 0.4
+    },
+    {
+      "model": "Mistral-Large-3",
+      "method": "CoT",
+      "visual_leakage": 8.6,
+      "negative_refusal": 79.4,
+      "visual_utility": 13.4,
+      "positive_refusal": 84.8
+    },
+    {
+      "model": "Qwen3-VL-8B",
+      "method": "Default",
+      "visual_leakage": 80.0,
+      "negative_refusal": null,
+      "visual_utility": 92.5,
+      "positive_refusal": null
+    },
+    {
+      "model": "Qwen3-VL-8B",
+      "method": "CI Filter",
+      "visual_leakage": 13.1,
+      "negative_refusal": 84.2,
+      "visual_utility": 90.4,
+      "positive_refusal": 2.7
+    },
+    {
+      "model": "Qwen3-VL-8B",
+      "method": "Image Review",
+      "visual_leakage": 76.3,
+      "negative_refusal": 9.9,
+      "visual_utility": 90.2,
+      "positive_refusal": 1.6
+    },
+    {
+      "model": "Qwen3-VL-8B",
+      "method": "Explicit Refuse",
+      "visual_leakage": 54.8,
+      "negative_refusal": 40.4,
+      "visual_utility": 86.4,
+      "positive_refusal": 7.5
+    },
+    {
+      "model": "Qwen3-VL-8B",
+      "method": "CoT",
+      "visual_leakage": 69.1,
+      "negative_refusal": 5.9,
+      "visual_utility": 91.0,
+      "positive_refusal": 0.2
+    }
+  ]
+}

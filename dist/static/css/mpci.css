@@ -107,3 +107,63 @@ pre code { font-size: 0.875rem; color: #333; }
   .publication-links .button { font-size: 0.9rem; }
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { animation: none !important; transition: none !important; } }
+
+/* Compact title and a reading order centered on examples and findings. */
+.publication-title.title.is-1 { font-size: 2rem; font-weight: 500; line-height: 1.3; margin-bottom: 1.25rem; }
+.publication-title b { font-weight: 700; }
+.publication-authors.is-size-5 { font-size: 1.1rem !important; }
+.publication-venue { font-size: 1rem; }
+.hero-body { padding-top: 2.5rem; padding-bottom: 1.5rem; }
+.section { padding-top: 2rem; padding-bottom: 2rem; }
+.section h2.title.is-3 { font-size: 1.75rem; line-height: 1.3; }
+.benchmark-facts { font-size: 0.95rem; color: #555; margin-top: 1.5rem; }
+.content .paper-takeaway { background: #f7f7f7; border-left: 3px solid #aaa; padding: 1rem 1.25rem; font-size: 1rem; }
+.example-tabs { display: flex; justify-content: center; flex-wrap: wrap; overflow: visible; border-bottom: 1px solid #dbdbdb; margin-top: 1.5rem; }
+.example-tabs button { font: inherit; font-size: 0.95rem; color: #4a4a4a; background: white; border: 1px solid transparent; border-radius: 4px 4px 0 0; padding: 0.65rem 1.1rem; margin-bottom: -1px; cursor: pointer; }
+.example-tabs button[aria-selected="true"] { border-color: #dbdbdb #dbdbdb white; color: #246da0; font-weight: 600; }
+.example-tabs button:hover { background: #fafafa; }
+.example-intro .title { margin-bottom: 0.65rem; }
+.example-intro p { line-height: 1.65; }
+.image-metadata { margin-top: 0.5rem; color: #666; font-size: 0.875rem; }
+.example-toolbar { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; margin-top: 1.5rem; font-size: 0.9rem; }
+.tier-controls { display: flex; gap: 0.5rem; }
+.tier-controls .button.is-small { font-size: 0.875rem; }
+.tier-explanation { font-size: 0.9rem; color: #666; margin: 0.85rem 0 1.25rem; }
+.example-pair { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 1rem; align-items: start; }
+.example-record { border: 1px solid #ddd; border-top: 3px solid #527e65; padding: 1.25rem; border-radius: 3px; background: #fcfcfc; min-width: 0; }
+.example-record.inappropriate { border-top-color: #b46b43; }
+.record-heading { font-weight: 700; font-size: 1rem; margin-bottom: 0.7rem; color: #3c684e; }
+.inappropriate .record-heading { color: #985431; }
+.record-explanation { font-size: 0.9rem; line-height: 1.6; margin-bottom: 1rem; }
+.record-body { border-top: 1px solid #e5e5e5; padding-top: 1rem; font-size: 0.95rem; line-height: 1.65; overflow-wrap: anywhere; }
+.story-text p + p { margin-top: 0.8rem; }
+.record-body h5 { font-weight: 600; margin-bottom: 0.5rem; }
+.record-body h5:not(:first-child) { margin-top: 1rem; }
+.user-instruction { white-space: pre-wrap; }
+.record-id { font-family: monospace; font-size: 0.8rem; color: #666; margin-top: 1.25rem; overflow-wrap: anywhere; }
+.seed-fields dt { font-size: 0.8rem; color: #666; text-transform: capitalize; }
+.seed-fields dd { margin-bottom: 0.75rem; }
+.trace-details { margin-top: 1rem; }
+.trace-details pre { max-height: 22rem; overflow: auto; margin-top: 1rem; padding: 0.75rem; }
+.trace-details pre code { font-size: 0.8rem; }
+.example-lesson { border-left: 3px solid #aaa; padding: 0.5rem 1rem; margin: 1.25rem 0; line-height: 1.65; }
+.example-source { margin-top: 1rem; }
+.tier-walkthrough li { margin-bottom: 0.75rem; }
+.paper-details { padding: 1rem 0; border-block: 1px solid #e4e4e4; margin-top: 1rem; }
+.paper-details summary,.trace-details summary { cursor: pointer; color: #365c78; font-size: 0.95rem; }
+.paper-details[open] summary { margin-bottom: 1rem; }
+.method-heading { margin-top: 2rem; }
+.metric-explainer { padding: 1rem 1.25rem; background: #f8f8f8; margin: 1.5rem 0 2rem; border-left: 3px solid #aaa; font-size: 0.95rem; line-height: 1.7; }
+.metric-explainer p + p { margin-top: 0.5rem; }
+.performance-figure { margin: 1.5rem 0; }
+.performance-figure figcaption { text-align: left; font-size: 0.9rem; color: #555; }
+.takeaway { margin-top: 2rem; }
+@media screen and (max-width: 768px) {
+  .publication-title.title.is-1 { font-size: 1.5rem; line-height: 1.35; }
+  .publication-authors.is-size-5 { font-size: 1rem !important; }
+  .hero-body { padding-top: 2rem; }
+  .section h2.title.is-3 { font-size: 1.5rem; }
+  .example-pair { grid-template-columns: minmax(0,1fr); }
+  .example-tabs button { font-size: 0.875rem; padding: 0.65rem 0.8rem; }
+  .example-record { padding: 1rem; }
+}

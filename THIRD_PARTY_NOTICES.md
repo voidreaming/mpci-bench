@@ -21,3 +21,13 @@ Source: https://github.com/jgthms/bulma/tree/0.9.1
 ## Research content
 
 Paper and figures: Shouju Wang and Haopeng Zhang, MPCI-Bench, arXiv:2601.08235v3. Included at the author's request. Source images in the paper originate from VISPR. Benchmark, code, and source-image terms remain those of their respective releases.
+
+## Benchmark example excerpts
+
+Six records (three pairs: `2017_89386002`, `2017_50310123`, `2017_99670226`) are reproduced from MPCI-Bench by Shouju Wang and Haopeng Zhang. Source: https://github.com/hpzhang94/MPCI-Bench/blob/bd85c6ec5c7aef81570da73081bdcbbe3af97893/dataset/mpci_bench.json.
+
+The repository identifies the dataset license as CC BY 4.0: https://creativecommons.org/licenses/by/4.0/. The selected fields are preserved verbatim; only formatting, category labels, titles, and explanatory summaries are adapted for display. The excerpt contains synthetic stories and tool histories, not redistributed VISPR source images. Field-level provenance is included in `dist/static/data/examples.json`.
+
+## Redrawn result figures
+
+The scientific plots in `dist/assets/results/` are generated from Tables 4 and 5 of the author's paper. Exact plotted values and source links are included in `scripts/figure-data.json`; `scripts/render_figures.py` reproduces desktop and mobile versions.
