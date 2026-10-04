@@ -10,10 +10,21 @@
   <link rel="stylesheet" href="./static/css/mpci.css">
   <link rel="icon" href="data:,">
   <script src="./static/js/mpci.js" defer></script>
+  <script src="./static/js/research-nav.js" defer></script>
   <script src="./static/js/examples.js" defer></script>
 </head>
 <body>
 <a class="skip-link" href="#intro">Skip to content</a>
+<nav class="research-nav" aria-label="Research projects">
+  <a class="research-home" href="https://shouju-wang.github.io/" aria-label="Shouju Wang’s homepage"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m3 11 9-8 9 8M5 10v11h5v-7h4v7h5V10"/></svg></a>
+  <details class="research-switcher">
+    <summary>More Research</summary>
+    <div class="research-menu">
+      <a href="https://voidreaming.github.io/mpci-bench/" aria-current="page">MPCI-Bench</a>
+      <a href="https://openreview.net/pdf?id=zxllNfqsYS">Follow-up work <span>Paper on OpenReview</span></a>
+    </div>
+  </details>
+</nav>
 <section class="hero" aria-label="Paper information">
   <div class="hero-body">
     <div class="container is-max-desktop">
@@ -62,6 +73,10 @@
     <p>AI assistants can search photos, read messages, and send files for us. Privacy then depends on context: sharing ticket details with friends can help plan a concert trip, while posting someone else’s tickets publicly may violate their privacy. <b>Contextual integrity</b> asks whether information should flow between these people for this purpose.</p>
     <p>MPCI-Bench tests this judgment in agents that process both images and text. Each source image anchors two scenarios: sharing is appropriate in one and inappropriate in the other. Evaluating both rewards <b>useful sharing alongside privacy protection</b>—refusing every request cannot count as success.</p>
     <p class="benchmark-facts"><b>2,052 cases</b> · <b>1,026 pairs</b> · <b>10 domains</b> · <b>3 tiers</b></p>
+    <figure class="paper-figure">
+      <a href="./assets/case-example.png" class="figure-link" aria-label="Enlarge Figure 1"><img src="./assets/case-example.png" width="2033" height="708" alt="A paired positive and negative case from the same image, represented as a contextual-integrity seed, narrative story, and agent action trace."></a>
+      <figcaption>One image, two sharing contexts, three representations: Seed, Story, and Trace.</figcaption>
+    </figure>
   </div>
 </section>
 
@@ -79,10 +94,7 @@
       <p><b>3. Trace</b><span>Provide simulated tool history and ask the agent to complete the final action.</span></p>
     </div>
     <p class="construction-note" id="quality">Each pair is refined for <b>utility, contextual appropriateness, and realism</b> before trace simulation.</p>
-    <details class="paper-details"><summary>Three-tier example and quality checks</summary><figure class="paper-figure">
-      <a href="./assets/case-example.png" class="figure-link" aria-label="Enlarge Figure 1"><img src="./assets/case-example.png" width="2033" height="708" alt="A paired positive and negative case from the same image, represented as a contextual-integrity seed, narrative story, and agent action trace."></a>
-      <figcaption>Figure 1: A three-tier pairwise case in MPCI-Bench. The same visual source supports both appropriate and inappropriate information flows.</figcaption>
-    </figure><div class="content"><p>Stories undergo up to three refinement rounds; both cases must pass. Human–AI agreement on 50 sampled stories is 98% for utility, 92% for contextual appropriateness, and 84% for realism. These checks validate story quality, not every model action.</p></div></details>
+    <details class="paper-details"><summary>Quality checks</summary><div class="content"><p>Stories undergo up to three refinement rounds; both cases must pass. Human–AI agreement on 50 sampled stories is 98% for utility, 92% for contextual appropriateness, and 84% for realism. These checks validate story quality, not every model action.</p></div></details>
   </div>
 </section>
 <section class="section" id="examples">
