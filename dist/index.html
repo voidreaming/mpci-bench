@@ -59,7 +59,8 @@
 <section class="section" id="intro">
   <div class="container is-max-desktop content">
     <h2 class="title is-3">Same image. Different context. Should an agent share it?</h2>
-    <p>MPCI-Bench pairs appropriate and inappropriate sharing scenarios to test whether multimodal agents protect privacy <b>while remaining useful</b>.</p>
+    <p>AI assistants can search photos, read messages, and send files for us. Privacy then depends on context: sharing ticket details with friends can help plan a concert trip, while posting someone else’s tickets publicly may violate their privacy. <b>Contextual integrity</b> asks whether information should flow between these people for this purpose.</p>
+    <p>MPCI-Bench tests this judgment in agents that process both images and text. Each source image anchors two scenarios: sharing is appropriate in one and inappropriate in the other. Evaluating both rewards <b>useful sharing alongside privacy protection</b>—refusing every request cannot count as success.</p>
     <p class="benchmark-facts"><b>2,052 cases</b> · <b>1,026 pairs</b> · <b>10 domains</b> · <b>3 tiers</b></p>
   </div>
 </section>
@@ -67,14 +68,15 @@
 <section class="section" id="benchmark">
   <div class="container is-max-desktop">
     <h2 class="title is-3">How is MPCI-Bench constructed?</h2>
+    <div class="content section-intro"><p>We start with images from VISPR, a visual privacy dataset, and build paired sharing scenarios around them. These become richer stories and simulated tasks involving tools such as email and messaging. Both stories must pass quality checks before their pair is retained.</p></div>
     <figure class="paper-figure">
       <a href="./assets/method-flow.png" class="figure-link" aria-label="Enlarge Figure 2"><img loading="lazy" src="./assets/method-flow.png" width="2030" height="1037" alt="MPCI-Bench pipeline: image preprocessing and seed construction, story expansion with tri-principle iterative refinement, and agent trace simulation."></a>
       <figcaption>Image → paired seeds → refined stories → simulated agent traces.</figcaption>
     </figure>
     <div class="construction-tiers" id="tiers">
-      <p><b>1. Seed</b><span>One image, two sharing contexts.</span></p>
-      <p><b>2. Story</b><span>Add a task and a privacy–utility trade-off.</span></p>
-      <p><b>3. Trace</b><span>Test the agent’s final tool action.</span></p>
+      <p><b>1. Seed</b><span>Identify the sender, subject, recipient, and rule governing sharing.</span></p>
+      <p><b>2. Story</b><span>Add a realistic task that makes sharing useful but requires a privacy decision.</span></p>
+      <p><b>3. Trace</b><span>Provide simulated tool history and ask the agent to complete the final action.</span></p>
     </div>
     <p class="construction-note" id="quality">Each pair is refined for <b>utility, contextual appropriateness, and realism</b> before trace simulation.</p>
     <details class="paper-details"><summary>Three-tier example and quality checks</summary><figure class="paper-figure">
@@ -86,7 +88,7 @@
 <section class="section" id="examples">
   <div class="container is-max-desktop">
     <h2 class="title is-3">Explore a paired example</h2>
-    <p>One source image. Two contexts with different sharing expectations.</p>
+    <div class="content section-intro"><p>Start with the concert tickets: compare who receives the same image and why. Switch examples, or expand the original records to follow each scenario from Seed to Story to Trace.</p></div>
     <div class="tabs is-boxed example-tabs" role="tablist" aria-label="Example domain"><button type="button" role="tab" id="example-0" aria-controls="example-panel" aria-selected="true" tabindex="0" data-example="0">Everyday life</button><button type="button" role="tab" id="example-1" aria-controls="example-panel" aria-selected="false" tabindex="-1" data-example="1">Education</button><button type="button" role="tab" id="example-2" aria-controls="example-panel" aria-selected="false" tabindex="-1" data-example="2">Healthcare</button></div>
     <div id="example-panel" role="tabpanel" aria-labelledby="example-0" tabindex="0">
       <div class="visual-example">
@@ -116,11 +118,19 @@
 <section class="section" id="experiments">
   <div class="container is-max-desktop">
     <h2 class="title is-3" id="leakage">Images leak more often than text</h2>
-    <p>Across all 11 models, visual leakage is higher. Even GPT-5 leaks visual information in <b>56.9%</b> of inappropriate-sharing cases.</p>
-    <figure class="paper-figure performance-figure"><a href="./assets/results/modality-leakage.svg" class="figure-link" aria-label="Enlarge the modality leakage figure"><picture><source media="(max-width: 600px)" srcset="./assets/results/modality-leakage-mobile.svg" width="324" height="670"><img loading="lazy" src="./assets/results/modality-leakage.svg" width="1200" height="710" alt="Across all eleven models, visual leakage exceeds text leakage. Visual leakage ranges from 56.9 to 91.6 percent, compared with text leakage of 20.2 to 45.2 percent."></picture></a><figcaption>Negative cases · lower is better. Source: <a href="https://arxiv.org/html/2601.08235v3#S4.T4">Table 4</a>. <a href="./assets/results/modality-leakage.png" download>Download PNG</a>.</figcaption></figure>
-    <details class="paper-details"><summary>Full results and judgment–action gap</summary><p class="note">Visual leakage includes attaching an image or disclosing its sensitive content. Utility measures appropriate image sharing on positive cases.</p><p class="note">Correct judgments do not guarantee safe actions: Qwen3-VL-30B achieves Trace probing F1 of 0.908, yet visual leakage is 91.6% on negative action cases. These metrics use different evaluation conditions.</p><div class="table-container" tabindex="0" role="region" aria-label="Action results table; scroll horizontally on small screens">
-      <table class="paper-table">
-        <thead><tr><th scope="col">Model</th><th scope="col">Aggregate LR ↓</th><th scope="col">Text LR ↓</th><th scope="col">Visual LR ↓</th><th scope="col">Utility ↑</th></tr></thead>
+    <div class="content section-intro">
+      <p>We evaluate 11 models in two ways: asking whether sharing is appropriate, and asking them to complete an action. A language-model judge then checks what their actions disclose. <b>Across all 11 models, visual leakage exceeds text leakage.</b> Even GPT-5 leaks visual information in 56.9% of inappropriate-sharing cases.</p>
+      <p><b>Leakage rate (LR)</b> measures disclosure when sharing is inappropriate; lower is better. <b>Utility rate</b> measures successful image sharing when it is appropriate; higher is better. Visual leakage includes attaching the image or revealing its sensitive content in words.</p>
+    </div>
+    <div class="results-grid">
+      <figure class="paper-figure performance-figure"><a href="./assets/results/modality-leakage.svg" class="figure-link" aria-label="Enlarge the modality leakage figure"><picture><source media="(min-width: 1024px)" srcset="./assets/results/modality-leakage-panel.svg" width="468" height="562"><source media="(max-width: 600px)" srcset="./assets/results/modality-leakage-mobile.svg" width="324" height="670"><img loading="lazy" src="./assets/results/modality-leakage.svg" width="1200" height="710" alt="Across all eleven models, visual leakage exceeds text leakage. Visual leakage ranges from 56.9 to 91.6 percent, compared with text leakage of 20.2 to 45.2 percent."></picture></a><figcaption>Negative cases · lower is better. Source: <a href="https://arxiv.org/html/2601.08235v3#S4.T4">Table 4</a>. <a href="./assets/results/modality-leakage.png" download>Download PNG</a>.</figcaption></figure>
+      <div class="results-table-panel">
+        <h3 class="title is-5">Action results</h3>
+        <p class="note">Rates in percent · ↓ lower is better · ↑ higher is better</p>
+        <p class="note table-scroll-hint">Scroll the table horizontally to see all metrics →</p>
+        <div class="table-container" tabindex="0" role="region" aria-label="Action results table; scroll horizontally on small screens">
+          <table class="paper-table action-table">
+        <thead><tr><th scope="col">Model</th><th scope="col"><abbr title="Aggregate leakage rate">Overall</abbr><br>LR ↓</th><th scope="col">Text<br>LR ↓</th><th scope="col">Visual<br>LR ↓</th><th scope="col">Utility<br>↑</th></tr></thead>
         <tbody><tr><th scope="row">GPT-5</th><td>60.2</td><td>20.2</td><td>56.9</td><td>92.0</td></tr>
 <tr><th scope="row">GPT-4o</th><td>92.0</td><td>40.9</td><td>90.4</td><td>98.3</td></tr>
 <tr><th scope="row">Mistral-Large-3</th><td>84.5</td><td>38.7</td><td>82.1</td><td>97.3</td></tr>
@@ -132,15 +142,22 @@
 <tr><th scope="row">Qwen3-VL-4B</th><td>81.3</td><td>30.9</td><td>79.0</td><td>92.9</td></tr>
 <tr><th scope="row">Qwen3-VL-8B</th><td>84.2</td><td>39.6</td><td>80.0</td><td>92.5</td></tr>
 <tr><th scope="row">Qwen3-VL-30B-A3B</th><td>93.8</td><td>45.2</td><td>91.6</td><td>97.4</td></tr></tbody>
-        <caption>Action results from Table 4 of the paper. Rates are percentages; leakage is measured on negative cases and utility on positive cases.</caption>
+        <caption>Table 4: leakage on inappropriate-sharing cases; utility on appropriate-sharing cases.</caption>
       </table>
-    </div><p class="note">Rates are from arXiv v3 (January 2026). Some values in the paper’s accompanying prose differ from its tables; the figures and tables here consistently use the table values.</p></details>
+        </div>
+      </div>
+    </div>
+    <div class="content results-explanation">
+      <h3 class="title is-5">Knowing the rule is not enough</h3>
+      <p>Qwen3-VL-30B achieves a Trace judgment F1 score of 0.908, yet its visual leakage reaches 91.6% when completing actions on inappropriate-sharing cases. These are different evaluation conditions, but together they show why we need to test both <b>what agents say is appropriate and what they actually share</b>.</p>
+    </div>
+    <details class="paper-details"><summary>Result sources and evaluation scope</summary><p class="note">Rates are from arXiv v3 (January 2026), using simulated benchmark tasks. Some values in the paper’s accompanying prose differ from its tables; the figures and tables here consistently use the table values.</p></details>
   </div>
 </section>
 <section class="section" id="mitigation">
   <div class="container is-max-desktop">
     <h2 class="title is-3">Privacy needs utility, too</h2>
-    <p>The CI Filter reduces leakage while retaining <b>over 90% utility</b> on appropriate-sharing cases for both tested models.</p>
+    <div class="content section-intro"><p>A safeguard that refuses every image-sharing request would also block legitimate tasks. We therefore compare five prompting conditions on two models, looking for <b>less leakage without losing appropriate sharing</b>.</p><p>The <b>CI Filter</b> adds a prompt before the final action: check whether this sender should share this person’s image with this recipient under the scenario’s privacy rule, and refuse if sharing violates it. In both tested models, this reduces visual leakage while preserving <b>over 90% utility</b>.</p></div>
     <figure class="paper-figure performance-figure"><a href="./assets/results/mitigation-tradeoff.svg" class="figure-link" aria-label="Enlarge the privacy and utility figure"><picture><source media="(max-width: 600px)" srcset="./assets/results/mitigation-tradeoff-mobile.svg" width="324" height="763"><img loading="lazy" src="./assets/results/mitigation-tradeoff.svg" width="1200" height="760" alt="Privacy versus utility for Mistral-Large-3 and Qwen3-VL-8B. The CI Filter retains over 90 percent utility with leakage of 29.6 and 13.1 percent. Mistral chain-of-thought reduces leakage to 8.6 percent but utility falls to 13.4 percent."></picture></a><figcaption>Upper left is better: less leakage, more useful sharing. Source: <a href="https://arxiv.org/html/2601.08235v3#S5.T5">Table 5</a>. <a href="./assets/results/mitigation-tradeoff.png" download>Download PNG</a>.</figcaption></figure>
     <details class="paper-details"><summary>Full mitigation results and scope</summary><p class="note">Mistral’s chain-of-thought prompt reaches 8.6% leakage but only 13.4% utility, showing why privacy alone is insufficient. These prompt-based results cover two models and simulated tasks; norms and outcomes may vary across settings.</p><div class="table-container" tabindex="0" role="region" aria-label="Mitigation results table; scroll horizontally on small screens">
       <table class="paper-table">
@@ -163,7 +180,7 @@
 <section class="section" id="resources">
   <div class="container is-max-desktop">
     <h2 class="title is-3">Resources</h2>
-    <p><a href="https://huggingface.co/datasets/Soojuu/mpci-bench">Dataset</a> · <a href="https://github.com/hpzhang94/MPCI-Bench">Evaluation code</a> · <a href="https://tribhuvanesh.github.io/vpa/">VISPR images</a></p>
+    <div class="content"><p>Use the paired cases to evaluate your own model’s privacy judgments and sharing decisions. The release includes benchmark annotations and evaluation code; source images are obtained separately from VISPR.</p><p><a href="https://huggingface.co/datasets/Soojuu/mpci-bench">Dataset</a> · <a href="https://github.com/hpzhang94/MPCI-Bench">Evaluation code</a> · <a href="https://tribhuvanesh.github.io/vpa/">VISPR images</a></p></div>
   </div>
 </section>
 <section class="section" id="BibTeX">

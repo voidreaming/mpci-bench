@@ -9,7 +9,7 @@ Academic project website for **MPCI-Bench: A Benchmark for Multimodal Pairwise C
 
 ## Template
 
-This site directly adapts the [Privasis project page](https://github.com/privasis/privasis.github.io), based on [Nerfies](https://github.com/nerfies/nerfies.github.io). It reuses Privasis's Bulma stylesheet and original `index.css`, hero structure, resource buttons, article layout, sidebar, and footer attribution. Paper content, tables, and figures are replaced with MPCI-Bench material. The reading order is overview, construction figure, illustrated paired examples, then results. Examples show the actual VISPR image and two short context summaries; original Seed/Story/Trace fields are available on demand. No analytics or build dependencies are included.
+This site directly adapts the [Privasis project page](https://github.com/privasis/privasis.github.io), based on [Nerfies](https://github.com/nerfies/nerfies.github.io). It reuses Privasis's Bulma stylesheet and original `index.css`, hero structure, resource buttons, article layout, sidebar, and footer attribution. Paper content, tables, and figures are replaced with MPCI-Bench material. The reading order is overview, construction figure, illustrated paired examples, then results. Short explanations introduce contextual integrity, the three tiers, and the evaluation metrics. The action chart and numeric table appear side by side on desktop and stack on smaller screens. Examples show the actual VISPR image and two short context summaries; original Seed/Story/Trace fields are available on demand. No analytics or build dependencies are included.
 
 See [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) and [LICENSE](LICENSE) for upstream licenses and attribution.
 
@@ -29,7 +29,7 @@ Open http://localhost:8765.
 - `dist/static/js/mpci.js`: navigation, lightbox, citation copying.
 - `dist/static/js/examples.js`: domain tabs and Seed/Story/Trace pair views.
 - `dist/static/data/examples.json`: three paired benchmark excerpts, exact fields, editorial annotations, and pinned provenance. After editing, run `python3 scripts/embed_examples.py` to synchronize the inline data.
-- `dist/assets/`: original paper figures; `results/` contains desktop/mobile SVG and PNG result plots. `examples/` contains the three unmodified source photos and their attribution manifest.
+- `dist/assets/`: original paper figures; `results/` contains desktop/mobile SVG and PNG result plots, plus a compact leakage chart for the two-column results layout. `examples/` contains the three unmodified source photos and their attribution manifest.
 - `scripts/figure-data.json`: exact Table 4/5 values and source links.
 - `scripts/render_figures.py`: reproduce the plots with Python and Matplotlib (`python3 scripts/render_figures.py`). This is optional; the website serves the committed assets without a build.
 

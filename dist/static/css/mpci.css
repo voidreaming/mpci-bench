@@ -109,7 +109,7 @@ pre code { font-size: 0.875rem; color: #333; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { animation: none !important; transition: none !important; } }
 
 /* A centered paper header with room above and below the title block. */
-.publication-title.title.is-1 { font-size: 2rem; font-weight: 500; line-height: 1.3; max-width: 56rem; margin: 0 auto 1.25rem; text-align: center; text-wrap: balance; }
+.publication-title.title.is-1 { font-size: 2.5rem; font-weight: 500; line-height: 1.25; max-width: 60rem; margin: 0 auto 1.25rem; text-align: center; text-wrap: balance; }
 .publication-title b { font-weight: 700; }
 .publication-authors.is-size-5 { font-size: 1.1rem !important; text-align: center; }
 .publication-venue { font-size: 1rem; margin-inline: auto; }
@@ -159,7 +159,7 @@ pre code { font-size: 0.875rem; color: #333; }
 .performance-figure figcaption { text-align: left; font-size: 0.9rem; color: #555; }
 .takeaway { margin-top: 2rem; }
 @media screen and (max-width: 768px) {
-  .publication-title.title.is-1 { font-size: 1.5rem; line-height: 1.35; }
+  .publication-title.title.is-1 { font-size: 1.75rem; line-height: 1.3; }
   .publication-authors.is-size-5 { font-size: 1rem !important; }
   .hero-body { padding-top: 3.5rem; padding-bottom: 2.5rem; }
   .section h2.title.is-3 { font-size: 1.5rem; }
@@ -198,4 +198,29 @@ pre code { font-size: 0.875rem; color: #333; }
   .construction-tiers { grid-template-columns: minmax(0,1fr); gap: 0.8rem; }
   .construction-tiers b { display: inline; margin-right: 0.5rem; }
   .construction-tiers span { display: inline; }
+}
+
+/* Keep the explanation in the main reading flow and compare results directly. */
+.section-intro { margin-bottom: 1.5rem; }
+.construction-tiers span { line-height: 1.6; }
+.results-grid { display: grid; grid-template-columns: minmax(0,1fr); gap: 2rem; align-items: start; }
+.results-grid .performance-figure { margin: 0; }
+.results-table-panel { min-width: 0; }
+.results-table-panel .title { margin-bottom: 0.5rem; }
+.results-table-panel .table-container { margin: 0.75rem 0 0; }
+.action-table { font-size: 0.875rem; min-width: 28rem; }
+.action-table th, .action-table td { padding: 0.4rem; }
+.action-table caption { font-size: 0.85rem; line-height: 1.5; text-align: left; }
+.results-explanation { margin-top: 2rem; }
+@media screen and (min-width: 1024px) {
+  .results-grid { grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 1.5rem; }
+  .action-table { table-layout: fixed; }
+  .action-table th, .action-table td { white-space: normal; }
+  .action-table th:first-child { width: 36%; }
+  .action-table th:not(:first-child), .action-table td { width: 16%; }
+}
+
+.table-scroll-hint { display: none; }
+@media screen and (max-width: 420px) {
+  .table-scroll-hint { display: block; margin-top: 0.5rem; }
 }

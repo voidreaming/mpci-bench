@@ -184,6 +184,49 @@ def mitigation_tradeoff():
          "at 8.6% but utility drops to 13.4%.")
 
 
+def modality_leakage_panel():
+    """A 468px-wide panel for a chart/table pair in a 960px content column."""
+    rows = DATA["action_results"]
+    fig, ax = plt.subplots(figsize=(6.5, 7.8), dpi=100)
+    fig.subplots_adjust(left=.34, right=.97, bottom=.12, top=.795)
+    fig.text(.03, .955, "Text vs. visual leakage", fontsize=16, weight="bold")
+    fig.text(.03, .913, "Negative cases · lower is better", fontsize=12, color=GRAY)
+    for i, row in enumerate(rows):
+        if i % 2 == 0:
+            ax.axhspan(i-.47, i+.47, color="#f7f9fa", zorder=0)
+        text_lr, visual_lr = row["text_leakage"], row["visual_leakage"]
+        ax.plot([text_lr, visual_lr], [i, i], color="#d1d7dc", lw=2, zorder=2)
+        for value, color, marker in ((text_lr, BLUE, "o"), (visual_lr, ORANGE, "s")):
+            ax.scatter([value], [i], s=47, color=color, marker=marker, zorder=4,
+                       edgecolors="white", linewidths=.6)
+            align, dx = ("left", 4) if color == BLUE else ("right", -4)
+            ax.text(value+dx, i, f"{value:.1f}", ha=align, va="center", fontsize=12,
+                    color=color, bbox={"facecolor": "white", "edgecolor": "none", "pad": .7}, zorder=5)
+
+    ax.set_yticks(range(len(rows)), [row["model"] for row in rows], fontsize=12)
+    ax.set_ylim(len(rows)-.5, -.65)
+    ax.set_xlim(0, 100)
+    ax.set_xticks([0, 50, 100])
+    ax.xaxis.set_major_formatter(PercentFormatter(xmax=100, decimals=0))
+    ax.get_xticklabels()[-1].set_horizontalalignment("right")
+    ax.set_xlabel("Leakage rate", labelpad=9, fontsize=12)
+    ax.grid(axis="x", color=GRID, linewidth=.65)
+    ax.set_axisbelow(True)
+    ax.tick_params(axis="y", length=0, pad=9)
+    ax.tick_params(axis="x", length=0, pad=8, labelsize=12)
+    for side in ("top", "left", "right"):
+        ax.spines[side].set_visible(False)
+    fig.legend(handles=[
+        Line2D([], [], color=BLUE, marker="o", lw=0, markersize=6, label="Text"),
+        Line2D([], [], color=ORANGE, marker="s", lw=0, markersize=6, label="Visual"),
+    ], loc="lower left", bbox_to_anchor=(.018, .84), ncol=2, frameon=False,
+        fontsize=12, handletextpad=.4, columnspacing=1.7, borderaxespad=0)
+    fig.text(.03, .025, "Source: arXiv v3, Table 4 · all 11 models", fontsize=11.5, color=GRAY)
+    save(fig, "modality-leakage-panel", "Text and visual leakage across eleven models",
+         "Compact panel layout of Table 4, arXiv:2601.08235v3. Same values as the full-width chart. "
+         "Visual leakage exceeds text leakage for every evaluated model. Lower leakage is better.")
+
+
 def modality_leakage_mobile():
     """A narrow, stacked-row layout with readable text at 320–390 CSS pixels."""
     rows = DATA["action_results"]
@@ -298,7 +341,8 @@ def mitigation_tradeoff_mobile():
 
 if __name__ == "__main__":
     modality_leakage()
+    modality_leakage_panel()
     mitigation_tradeoff()
     modality_leakage_mobile()
     mitigation_tradeoff_mobile()
-    print(f"Rendered 2 figures in desktop and mobile layouts (SVG and PNG) in {OUT}")
+    print(f"Rendered 2 figures in desktop/mobile layouts and a compact leakage panel (SVG and PNG) in {OUT}")
